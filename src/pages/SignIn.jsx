@@ -1,7 +1,8 @@
 //Dependencies
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
 
 // Interface Components
 import ArrowRightIcon from "../components/Interface/ArrowRightIcon";
@@ -19,10 +20,31 @@ function SignIn() {
     const navigate = useNavigate();
 
     const onChange = (e) => {
-      setFormData( prevState => ({
-        ...prevState,
-        [e.target.id]: e.target.value
-      }))
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.id]: e.target.value,
+        }));
+    };
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const auth = getAuth();
+
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            if (userCredential.user) {
+                navigate("/");
+            }
+        } catch (error) {
+          toast.error("Bad User Credentials")
+        }
+
     };
 
     return (
@@ -32,7 +54,7 @@ function SignIn() {
                     <p className="pageHeader">Welcome Back!</p>
                 </header>
 
-                <form>
+                <form onSubmit={onSubmit}>
                     <input
                         type="email"
                         name=""
@@ -56,7 +78,9 @@ function SignIn() {
                             src={VisibilityIcon}
                             alt=""
                             className="showPassword"
-                            onClick={() => setShowPassword( prevState => !prevState)}
+                            onClick={() =>
+                                setShowPassword((prevState) => !prevState)
+                            }
                         />
                     </div>
 
@@ -65,18 +89,22 @@ function SignIn() {
                     </Link>
 
                     <div className="signInBar">
-                      <p className="signInText">Sign In</p>
-                      <button className="signInButton"><ArrowRightIcon fill="#00cc66" width="34px" height="34px"/></button>
+                        <p className="signInText">Sign In</p>
+                        <button className="signInButton">
+                            <ArrowRightIcon
+                                fill="#00cc66"
+                                width="34px"
+                                height="34px"
+                            />
+                        </button>
                     </div>
-
                 </form>
 
                 {/* Google OAuth */}
 
                 <Link to="/sign-up" className="registerLink">
-                  Sign Up instead
+                    Sign Up instead
                 </Link>
-
             </div>
         </>
     );

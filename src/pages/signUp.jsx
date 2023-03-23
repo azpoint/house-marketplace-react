@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth"
 import { db } from "../firebase.config"
 import { doc,setDoc,serverTimestamp} from "firebase/firestore"
+import { toast } from "react-toastify";
+
 
 // Interface Components
 import ArrowRightIcon from "../components/Interface/ArrowRightIcon";
@@ -50,7 +52,7 @@ function SignUp() {
         navigate("/")
 
       } catch (error) {
-        console.log(error)
+        toast.error("Something went wrong during registry")
       }
     }
 
