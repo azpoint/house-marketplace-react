@@ -5,6 +5,9 @@ import { db } from "../firebase.config";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import ArrowRightIcon from "../components/Interface/ArrowRightIcon";
+import HomeIcon from "../components/Interface/HomeIcon";
+
 function Profile() {
     const auth = getAuth();
 
@@ -24,20 +27,20 @@ function Profile() {
     };
 
     const onSubmit = async () => {
-      try {
-        if(auth.currentUser.displayName !== name) {
-          //Update display name in FB
-          await updateProfile(auth.currentUser, {
-            displayName: name
-          })
+        try {
+            if (auth.currentUser.displayName !== name) {
+                //Update display name in FB
+                await updateProfile(auth.currentUser, {
+                    displayName: name,
+                });
 
-          //Update in FireStore
-          const userRef = doc(db, "users", auth.currentUser.uid)
-          await updateDoc(userRef, {name : name})
+                //Update in FireStore
+                const userRef = doc(db, "users", auth.currentUser.uid);
+                await updateDoc(userRef, { name: name });
+            }
+        } catch (error) {
+            toast.error("Could not update profile details");
         }
-      } catch (error) {
-        toast.error("Could not update profile details")
-      }
     };
 
     const onChange = (e) => {
@@ -56,7 +59,7 @@ function Profile() {
                 </button>
             </header>
 
-            <main className="my-8">
+            <main >
                 <div className="profileDetailsHeader my-4">
                     <p className="profileDetailsText">Profile Details</p>
                     <p
@@ -98,6 +101,13 @@ function Profile() {
                         />
                     </form>
                 </div>
+
+                <Link to="/create-listing" className="createListing">
+                    <HomeIcon />
+                    <p>Sell or Rent your Home</p>
+                    <ArrowRightIcon width="36px" height="36px" color="#00cc66"/>
+                </Link>
+
             </main>
         </div>
     );
