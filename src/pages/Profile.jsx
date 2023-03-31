@@ -105,7 +105,7 @@ function Profile() {
                 <Link to="/create-listing" className="createListing">
                     <HomeIcon />
                     <p>Sell or Rent your Home</p>
-                    <ArrowRightIcon width="36px" height="36px" color="#00cc66"/>
+                    <ArrowRightIcon width="40px" height="40px" color="#00cc66"/>
                 </Link>
 
             </main>
