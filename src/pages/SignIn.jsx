@@ -95,7 +95,7 @@ function SignIn() {
                         <p className="signInText">Sign In</p>
                         <button className="signInButton">
                             <ArrowRightIcon
-                                fill="#00cc66"
+                                color="#00cc66"
                                 width="34px"
                                 height="34px"
                             />

@@ -110,7 +110,7 @@ function SignUp() {
 
                     <div className="signUpBar">
                       <p className="signUpText">Sign Up</p>
-                      <button className="signUpButton"><ArrowRightIcon fill="#00cc66" width="34px" height="34px"/></button>
+                      <button className="signUpButton"><ArrowRightIcon color="#00cc66" width="34px" height="34px"/></button>
                     </div>
 
                 </form>
