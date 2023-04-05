@@ -34,7 +34,7 @@ function Listing() {
         };
         fetchListing();
 
-        if (listing) {
+        if (!loading) {
             swiperElRef.current.addEventListener("progress", (e) => {
                 const [swiper, progress] = e.detail;
             });

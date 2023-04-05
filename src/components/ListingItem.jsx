@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 import DeleteIcon from "./Interface/DeleteIcon"
 import BedIcon from "./Interface/Bedicon"
 import BathIcon from "./Interface/BathIcon"
+import EditIcon from "./Interface/EditIcon"
 
 
-function ListingItems({listing, id, onDelete}) {
+function ListingItems({listing, id, onDelete, onEdit}) {
 
-    console.log
   return (
     <li className="categoryListing">
         <Link to={`/category/${listing.type}/${id}`} className="categoryListingLink">
@@ -41,8 +41,10 @@ function ListingItems({listing, id, onDelete}) {
             </div>
         </Link>
 
+        {onEdit && <EditIcon className="editIcon" onClick={() => onEdit(id)} />}
+
         {onDelete && (
-          <DeleteIcon className="removeIcon" color="rgb(231,76,60)" onclick={() => onDelete} />
+          <DeleteIcon className="removeIcon" color="rgb(231,76,60)" onClick={() => onDelete(listing.id, listing.name)} />
         )}
 
     </li>
