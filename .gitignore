@@ -14,8 +14,6 @@ dist-ssr
 
 .env
 
-firebase.config.js
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
