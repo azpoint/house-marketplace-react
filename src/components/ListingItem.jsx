@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 import DeleteIcon from "./Interface/DeleteIcon"
-import BedIcon from "./Interface/Bedicon"
+import BedIcon from "./Interface/BedIcon"
 import BathIcon from "./Interface/BathIcon"
 import EditIcon from "./Interface/EditIcon"
 
@@ -41,10 +41,17 @@ function ListingItems({listing, id, onDelete, onEdit}) {
             </div>
         </Link>
 
-        {onEdit && <EditIcon className="editIcon" onClick={() => onEdit(id)} />}
+        {onEdit && (
+          <button onClick={onEdit} >
+            <EditIcon className="editIcon" />
+          </button>
+          
+        )}
 
         {onDelete && (
-          <DeleteIcon className="removeIcon" color="rgb(231,76,60)" onClick={() => onDelete(listing.id, listing.name)} />
+          <button onClick={onDelete}>
+            <DeleteIcon className="removeIcon" color="rgb(231,76,60)"  />
+          </button>
         )}
 
     </li>
